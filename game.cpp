@@ -1,6 +1,5 @@
 #include "game.hpp"
-#include <SFML/Window/VideoMode.hpp>
-#include <SFML/Window/WindowStyle.hpp>
+#include "splashstate.hpp"
 
 namespace Sonar {
     Game::Game(int width, int height, std::string windowTitle)
@@ -10,6 +9,10 @@ namespace Sonar {
             windowTitle, 
             sf::Style::Close | sf::Style::Titlebar
         );
+
+        _data->statemachine.addState( StateRef(new SplashScreenState(this->_data)) );
+
+        this->run();
     }
 
     void Game::run()
