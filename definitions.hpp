@@ -1,5 +1,7 @@
 #pragma once
 
+#define GAME_WINDOW_TITLE "Game"
+
 #define SCREEN_WIDTH 768
 #define SCREEN_HEIGHT 1136
 
