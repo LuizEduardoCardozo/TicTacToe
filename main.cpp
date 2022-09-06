@@ -5,7 +5,7 @@
 
 int main()
 {
-    Sonar::Game(SCREEN_WIDTH, SCREEN_WIDTH, GAME_WINDOW_TITLE);
+    Sonar::Game(SCREEN_WIDTH, SCREEN_HEIGHT, GAME_WINDOW_TITLE);
 
     return 0;
 }
