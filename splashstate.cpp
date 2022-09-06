@@ -4,6 +4,7 @@
 #include <SFML/Window/Event.hpp>
 
 #include "game.hpp"
+#include "mainmenustate.hpp"
 #include "splashstate.hpp"
 #include "definitions.hpp"
 
@@ -37,10 +38,9 @@ namespace Sonar
     {
         if ( this->_clock.getElapsedTime().asSeconds() > SPLASH_SCREEN_SHOW_TIME)
         {
-            // Switch to the main menu
-            std::cout << "*** Imagine a main menu here ***" << std::endl;
+            this->_data->statemachine.addState( StateRef( new MainMenuState( this->_data ) ), true );
         }
-        }
+    }
 
     void SplashScreenState::draw(float dt)
     {
