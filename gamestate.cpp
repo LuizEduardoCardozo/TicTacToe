@@ -3,6 +3,7 @@
 #include "gamestate.hpp"
 #include "definitions.hpp"
 #include "game.hpp"
+#include "pausestate.hpp"
 
 namespace Sonar
 {
@@ -38,7 +39,7 @@ namespace Sonar
 
             if ( this->_data->input.isSpriteClicked(this->_pauseButton, sf::Mouse::Left, this->_data->window) )
             {
-                std::cout << "Pausing game" << std::endl;
+                this->_data->statemachine.addState( StateRef( new PauseState( this->_data ) ), false );
             }
         }
     }
