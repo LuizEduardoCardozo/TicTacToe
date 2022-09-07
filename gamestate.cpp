@@ -1,6 +1,3 @@
-#include <SFML/Graphics/Texture.hpp>
-#include <SFML/System/Vector2.hpp>
-#include <alloca.h>
 #include <iostream>
 
 #include "gamestate.hpp"
@@ -79,6 +76,10 @@ namespace Sonar
             {
                 this->_data->statemachine.addState( StateRef( new PauseState( this->_data ) ), false );
             }
+            else if( this->_data->input.isSpriteClicked(this->_grid, sf::Mouse::Left, this->_data->window) )
+            {
+                checkAndPlace();
+            }
         }
     }
 
@@ -104,6 +105,72 @@ namespace Sonar
         }
 
         this->_data->window.display();
+    }
+
+    void GameState::checkAndPlace()
+    {
+        sf::Vector2i touchedPoint = this->_data->input.getMousePosition(this->_data->window);
+        sf::FloatRect gridSize = this->_grid.getGlobalBounds();
+
+        sf::Vector2f gapOutsideOfGrid = sf::Vector2f(
+            (SCREEN_WIDTH - gridSize.width ) / 2,
+            (SCREEN_HEIGHT - gridSize.height) / 2
+        );
+
+        sf::Vector2f gridLocalTouchedPoint = sf::Vector2f(
+            touchedPoint.x - gapOutsideOfGrid.x,
+            touchedPoint.y - gapOutsideOfGrid.y
+        );
+
+        sf::Vector2f gridSectionSize = sf::Vector2f(gridSize.width / 3, gridSize.height / 3);
+        
+        int col, row;
+
+        if (gridLocalTouchedPoint.x < gridSectionSize.x)
+        {
+            col = 0;
+        } 
+        else if (gridLocalTouchedPoint.x < 2 * gridSectionSize.x)
+        {
+            col = 1;
+        }
+        else if (gridLocalTouchedPoint.x < 3 * gridSectionSize.x)
+        {
+            col = 2;
+        }
+
+        if (gridLocalTouchedPoint.y < gridSectionSize.y)
+        {
+            row = 0;
+        }
+        else if (gridLocalTouchedPoint.y < 2 * gridSectionSize.y)
+        {
+            row = 1;
+        }
+        else if (gridLocalTouchedPoint.y < 3 * gridSectionSize.y)
+        {
+            row = 2;
+        }
+
+        if(this->_gridStatus[col][row] == EMPTY_SPACE)
+        {
+            std::cout << "you have clicked on the column " << col << " and the row " << row << " | turn: " << turn << std::endl;
+            _gridStatus[col][row] = turn;
+
+            if(turn == X_PLAYER)
+            {
+                _gridPlayers[col][row].setTexture( this->_data->assets.getTexture("XPlayer") );
+                turn = O_PLAYER;
+            }
+            else if(turn == O_PLAYER)
+            {
+                _gridPlayers[col][row].setTexture( this->_data->assets.getTexture("OPlayer") );
+                turn = X_PLAYER;
+            }
+        }
+
+        this->_gridPlayers[col][row].setColor( sf::Color(255, 255, 255, 255) );
+
     }
 
 }

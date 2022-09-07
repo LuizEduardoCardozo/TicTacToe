@@ -19,6 +19,8 @@ namespace Sonar
             void draw( float dt );
 
         private:
+            void checkAndPlace();
+
             GameDataRef _data;
 
             sf::Sprite _background;
