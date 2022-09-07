@@ -19,6 +19,7 @@
 
 #define PAUSE_BACKGROUND_FILEPATH "resources/mainmenu-background.png"
 
+#define  RETRY_BUTTON_FILEPATH  "resources/retry-button.png"
 #define RESUME_BUTTON_FILEPATH "resources/resume-button.png"
 #define HOME_BUTTON_FILEPATH   "resources/home-button.png"
 
