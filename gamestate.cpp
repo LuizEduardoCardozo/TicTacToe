@@ -47,6 +47,8 @@ namespace Sonar
 
                 this->_gridPlayers[l][c].setTexture(this->_data->assets.getTexture("XPlayer"));
                 this->_gridPlayers[l][c].setPosition(piecePosX, piecePosY);
+                this->_gridPlayers[l][c].setColor( sf::Color(255, 255, 255, 255) );
+
                 this->_gridStatus[l][c] = EMPTY_SPACE;
             }
         }
