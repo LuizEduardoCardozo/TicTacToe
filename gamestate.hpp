@@ -22,8 +22,12 @@ namespace Sonar
             GameDataRef _data;
 
             sf::Sprite _background;
+            sf::Sprite _grid;
 
             sf::Sprite _pauseButton;
+            sf::Sprite _gridPlayers[3][3];
+
+            int _gridStatus[3][3];
 
             int turn;
             int gameState;
