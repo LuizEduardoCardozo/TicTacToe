@@ -15,6 +15,8 @@
 
 #define GAME_BACKGROUND_FILEPATH               "resources/mainmenu-background.png"
 
+#define GRID_FILEPATH                          "resources/grid.png"
+
 #define PAUSE_BUTTON_FILEPATH "resources/pause-button.png"
 
 #define PAUSE_BACKGROUND_FILEPATH "resources/mainmenu-background.png"
