@@ -17,6 +17,11 @@
 
 #define PAUSE_BUTTON_FILEPATH "resources/pause-button.png"
 
+#define PAUSE_BACKGROUND_FILEPATH "resources/mainmenu-background.png"
+
+#define RESUME_BUTTON_FILEPATH "resources/resume-button.png"
+#define HOME_BUTTON_FILEPATH   "resources/home-button.png"
+
 #define X_PLAYER_FILEPATH         "resources/x-player.png"
 #define O_PLAYER_FILEPATH         "resources/o-player.png"
 #define X_WINNING_PLAYER_FILEPATH "resources/x-winning-player.png"
