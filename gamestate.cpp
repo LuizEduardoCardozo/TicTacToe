@@ -34,27 +34,34 @@ namespace Sonar
 
         this->_grid.setPosition(gridPosX, gridPosY);
 
-        // initGridPieces();
-
-        sf::Vector2u pieceSize = this->_data->assets.getTexture("XPlayer").getSize();
+        sf::Texture playerTexture = this->_data->assets.getTexture("XPlayer");
+        sf::Vector2u playerSize = playerTexture.getSize();
 
         for ( size_t l = 0; l < 3; l++ )
         {
             for ( size_t c = 0; c < 3; c++ )
             {
-                float piecePosX = this->_grid.getPosition().x + (pieceSize.x * l) - 3;
-                float piecePosY = this->_grid.getPosition().y + (pieceSize.y * c) - 3;
-
-                this->_gridPlayers[l][c].setTexture(this->_data->assets.getTexture("XPlayer"));
-                this->_gridPlayers[l][c].setPosition(piecePosX, piecePosY);
-                this->_gridPlayers[l][c].setColor( sf::Color(255, 255, 255, 255) );
-
                 this->_gridStatus[l][c] = EMPTY_SPACE;
+                this->_gridPlayers[l][c].setTexture(playerTexture);
+
+                sf::Vector2f gridPos = this->_grid.getPosition();
+
+                float playerPosX = gridPos.x + (playerSize.x * l) - 3;
+                float playerPosY = gridPos.y + (playerSize.y * c) - 3;
+
+                this->_gridPlayers[l][c].setPosition(
+                    playerPosX,
+                    playerPosY
+                );
+
+                this->_gridPlayers[l][c].setColor(
+                    sf::Color(255, 255, 255, 0)
+                );
             }
         }
 
         gameState = STATE_PLAYING;
-        turn = STATE_PLACE;
+        turn = X_PLAYER;
     }
 
     void GameState::handleInput()
