@@ -20,6 +20,8 @@ namespace Sonar
 
         private:
             void checkAndPlace();
+            void checkPlayerWon( int turn );
+            void check3PiecesForMatch(sf::Vector2u p1, sf::Vector2u p2, sf::Vector2u p3, int player);
 
             GameDataRef _data;
 
